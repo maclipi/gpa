@@ -31,3 +31,8 @@
     transform: rotate(360deg);
   }
 }
+
+.formFields {
+  margin-left: 1% !important;
+  margin-right: 1% !important;
+}
