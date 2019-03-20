@@ -1,39 +1,64 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
+import withStyles from "@material-ui/core/styles/withStyles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import AddressForm from "./component/AddressForm";
 
-// import { Button } from "react-bootstrap";
-import AppHeader from "./component/app.header";
-import StudentForm from "./component/student.form";
+const styles = theme => ({
+  appBar: {
+    position: "relative"
+  },
+  layout: {
+    width: "auto",
+    marginLeft: theme.spacing.unit * 2,
+    marginRight: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 2 * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto"
+    }
+  },
+  paper: {
+    marginTop: theme.spacing.unit * 3,
+    marginBottom: theme.spacing.unit * 3,
+    padding: theme.spacing.unit * 2,
+    [theme.breakpoints.up(600 + theme.spacing.unit * 3 * 2)]: {
+      marginTop: theme.spacing.unit * 6,
+      marginBottom: theme.spacing.unit * 6,
+      padding: theme.spacing.unit * 3
+    }
+  }
+});
 
-import Grid from "@material-ui/core/Grid";
-import "./App.css";
-
-class App extends Component {
+class Checkout extends React.Component {
   render() {
+    const { classes } = this.props;
+
     return (
-      <div className="App">
-        <Grid container spacing={24}>
-          <Grid item xs={12}>
-            <AppHeader />
-          </Grid>
-          <Grid item xs={4} className="formFields">
-            <StudentForm name="Student Name" type="text" fw />
-          </Grid>
-          <Grid item xs={4} className="formFields">
-            <StudentForm name="Parents/Guardian Name" type="text" fw />
-          </Grid>
-          <Grid item xs={4} className="formFields">
-            <StudentForm name="Email id" type="email" fw />
-          </Grid>
-          <Grid item xs={4} className="formFields">
-            <StudentForm name="Phone Number" type="number" fw />
-          </Grid>
-          <Grid item xs={4} className="formFields">
-            <StudentForm name="NEET Score:" type="number" fw />
-          </Grid>
-        </Grid>
-      </div>
+      <React.Fragment>
+        <CssBaseline />
+        <AppBar position="absolute" color="default" className={classes.appBar}>
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              GPA Calculator
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <main className={classes.layout}>
+          <Paper className={classes.paper}>
+            <AddressForm />
+          </Paper>
+        </main>
+      </React.Fragment>
     );
   }
 }
 
-export default App;
+Checkout.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+export default withStyles(styles)(Checkout);
