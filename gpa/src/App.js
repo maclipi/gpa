@@ -6,7 +6,7 @@ import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Paper from "@material-ui/core/Paper";
 import Typography from "@material-ui/core/Typography";
-import AddressForm from "./component/AddressForm";
+import { PersonalForm } from "./components";
 
 const styles = theme => ({
   appBar: {
@@ -50,7 +50,7 @@ class Checkout extends React.Component {
         </AppBar>
         <main className={classes.layout}>
           <Paper className={classes.paper}>
-            <AddressForm />
+            <PersonalForm />
           </Paper>
         </main>
       </React.Fragment>
