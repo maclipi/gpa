@@ -38,7 +38,6 @@ class PersonalForm extends Component {
     for(let i=2010;i<=2030;i++){
       range.push(i);
     }
-
     this.state = {
       data: {
         yearOfpassingTenth: '',
@@ -47,13 +46,21 @@ class PersonalForm extends Component {
     };
   }
 
+  handleData = (key, value) => {
+    this.setState({ data: {
+      ...this.state.data,
+      [key]: value
+    }}, () => console.log(this.state));
+  }
+
   handleChange = event => {
     console.log('====================================');
     console.log(event.target);
     console.log('====================================');
     this.setState({ data: {
+      ...this.state.data,
       [event.target.name]: event.target.value
-    }});
+    }}, () => console.log(this.state));
   };
 
   renderTenthSubFields = () => {
@@ -68,6 +75,9 @@ class PersonalForm extends Component {
         </InputLabel>
         <TextField
           className={classes.textField}
+          onChange={(evt) => {
+            this.handleData(`Subject-${value}-Marks:`, evt.target.value);
+          }}
         />
         <InputLabel
           className={classes.label}
@@ -82,6 +92,10 @@ class PersonalForm extends Component {
   }
   render() {
     const { classes } = this.props;
+    const { data } = this.state;
+    console.log('====================================');
+    console.log(data);
+    console.log('====================================');
     return (
       <React.Fragment>
         <Typography variant="h6" color="inherit" noWrap>
@@ -134,7 +148,7 @@ class PersonalForm extends Component {
             <FormControl className={classes.formControl}>
               <InputLabel htmlFor="yearOfpassingTenth-simple">Year of Passing Class 10/SSC/X/O Level:</InputLabel>
               <Select
-                value={this.state.age}
+                value={data.yearOfpassingTenth}
                 onChange={this.handleChange}
                 inputProps={{
                   name: 'yearOfpassingTenth',
